@@ -1,0 +1,85 @@
+h1 {
+    color: #6495ed;
+    font-size: 15px;
+    font-family: sans-serif;
+    font-weight: bold;
+}
+
+body {
+    color: #6495ed;
+    font-family: sans-serif;
+    font-size: 10px;
+}
+
+input[type=button] {
+    color: #6495ed;
+    font-family: sans-serif;
+    font-size: 10px;
+    background: #f0f8ff;
+    border: none;
+}
+
+input[type=submit] {
+    color: #6495ed;
+    font-family: sans-serif;
+    font-size: 10px;
+    background: #f0f8ff;
+    border: none;
+}
+
+input[type=text], input[type=number] {
+    color: #6495ed;
+    font-weight: bold;
+    font-family: sans-serif;
+    font-size: 10px;
+    border: none;
+    background-color: #f0f8ff;
+}
+
+/*input[type=text].ng-invalid, input[type=number].ng-invalid {
+    color: white;
+    font-weight: bold;
+    font-family: sans-serif;
+    font-size: 10px;
+    border: none;
+    background-color: #a52a2a;
+} */
+
+input.error {
+    color: white;
+    font-weight: bold;
+    font-family: sans-serif;
+    font-size: 10px;
+    border: none;
+    background-color: red;
+}
+
+.errorMessage {
+    color: red;
+    font-weight: bold;
+    font-family: sans-serif;
+    font-size: 10px;
+}
+
+table {
+    border: none;
+}
+
+tr {
+    border: none;
+}
+
+th {
+    color: #6495ed;
+    font-family: sans-serif;
+    font-size: 12px;
+    font-weight: bold;
+    border: none;
+}
+
+td {
+    color: #6495ed;
+    font-family: sans-serif;
+    font-size: 10px;
+    border: none;
+}
