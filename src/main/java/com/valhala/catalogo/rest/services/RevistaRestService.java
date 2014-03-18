@@ -66,10 +66,10 @@ public class RevistaRestService {
     } // fim do método gravarRevista
 
     @PUT
-    @Path("/editar")
+    @Path("/editar/{id}")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public Response editarRevista(Revista revista) {
+    public Response editarRevista(@PathParam("id") Long id, Revista revista) {
     	Response.ResponseBuilder builder = null;
     	RetornoRest retorno;
         try {

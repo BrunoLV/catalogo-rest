@@ -1,71 +1,57 @@
 <h1>Sistema de Cadastro de Revistas</h1>
 <br />
-<form name="cadastroForm" novalidate ng-submit="salvar()">
-	<table>
-		<input type="hidden" name="idHidden" ng-model="revista.id" />
-		<tr>
-			<td>Titulo:</td>
-			<td><input name="titulo" type="text"
-				ng-class="{error:cadastroForm.titulo.$dirty && cadastroForm.titulo.$invalid}"
-				ng-model="revista.titulo" ng-minlength=3 required ng-focus /></td>
-			<td><small class="errorMessage"
-				ng-show="cadastroForm.titulo.$dirty && cadastroForm.titulo.$invalid && !cadastroForm.titulo.$focused">
-					Valor invalido. </small></td>
-		</tr>
-		<tr>
-			<td>Subtitulo:</td>
-			<td><input name="subTitulo" type="text"
-				ng-class="{error:cadastroForm.subTitulo.$dirty && cadastroForm.subTitulo.$invalid}"
-				ng-model="revista.subTitulo" ng-minlength=3 required ng-focus /></td>
-			<td><small class="errorMessage"
-				ng-show="cadastroForm.subTitulo.$dirty && cadastroForm.subTitulo.$invalid && !cadastroForm.subTitulo.$focused">
-					Valor invalido. </small></td>
-		</tr>
-		<tr>
-			<td>Arco:</td>
-			<td><input name="arco" type="text" ng-model="revista.arco" /></td>
-		</tr>
-		<tr>
-			<td>Edição:</td>
-			<td><input name="edicaoText" type="number"
-				ng-class="{error:cadastroForm.edicao.$dirty && cadastroForm.edicao.$invalid}"
-				ng-model="revista.edicao" required ng-focus /></td>
-			<td><small class="errorMessage"
-				ng-show="cadastroForm.edicao.$dirty && cadastroForm.edicao.$invalid && !cadastroForm.edicao.$focused">
-					Valor invalido. </small></td>
-		</tr>
-		<tr>
-			<td>Ano:</td>
-			<td><input name="anoPublicacao" type="number"
-				ng-class="{error:cadastroForm.anoPublicacao.$dirty && cadastroForm.anoPublicacao.$invalid}"
-				ng-model="revista.anoPublicacao" required ng-minlength=4 ng-focus /></td>
-			<td><small class="errorMessage"
-				ng-show="cadastroForm.anoPublicacao.$dirty && cadastroForm.anoPublicacao.$invalid && !cadastroForm.anoPublicacao.$focused">Valor
-			 		invalido.</small></td>
-		</tr>
-		<tr>
-			<td>Valor:</td>
-			<td><input name="valor" type="number"
-				ng-class="{error:cadastroForm.valor.$dirty && cadastroForm.valor.$invalid}"
-				ng-model="revista.valor" required ng-focus /></td>
-			<td>
-			<td><small class="errorMessage"
-				ng-show="cadastroForm.valor.$dirty && cadastroForm.valor.$invalid && !cadastroForm.valor.$focused">Valor invalido.</small></td>
-		</tr>
-	</table>
-	<input type="submit" value="Salvar" />
+<form name="cadastroForm" class="form-horizontal" role="form" novalidate ng-submit="salvar()">
+	<input type="hidden" name="idHidden" ng-model="revista.id" />
+	<fieldset>
+		<div class="form-group">
+			<label class="col-sm-2 control-label" for="titulo">Título:</label>
+			<div class="col-sm-10">
+				<input id="titulo" name="titulo" type="text" class="form-control" style="width: 70%;" ng-model="revista.titulo" ng-minlength=3 required ng-focus />
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label" for="subtitulo">Subtítulo:</label>
+			<div class="col-sm-10">
+				<input id="subTitulo" name="subTitulo" type="text" class="form-control" style="width: 70%;" ng-model="revista.subTitulo" ng-minlength=3 required ng-focus />
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label" for="arco">Arco:</label>
+			<div class="col-sm-10">
+				<input id="arco" name="arco" type="text" class="form-control" style="width: 70%;" ng-model="revista.arco" ng-minlength=3 ng-focus />
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label" for="edicaoText">Edição:</label>
+			<div class="col-sm-10">
+				<input id="edicaoText" name="edicaoText" type="number" class="form-control" style="width: 20%;" ng-model="revista.edicao" required ng-focus />
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label" for="anoPublicacao">Ano:</label>
+			<div class="col-sm-10">
+				<input id="anoPublicacao" name="anoPublicacao" type="number" class="form-control" style="width: 20%;" ng-model="revista.anoPublicacao" ng-minlength=4 required ng-focus />
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-2 control-label" for="valor">Valor:</label>
+			<div class="col-sm-10">
+				<input id="valor" name="valor" type="number" class="form-control" style="width: 20%;" ng-model="revista.valor" required ng-focus />
+			</div>
+		</div>
+		<input class="btn btn-primary" type="submit" value="Salvar" />
+	</fieldset>
 </form>
 <br />
 <br />
-
-Filtro de resultados:
-<input type="text" style="width: 200px;" ng-model="textoFiltro"
-	placeholder="Digite o texto para filtragem." />
+<label class="control-label" for="textoFiltro">Filtro:</label>
+<input id="textoFiltro" name="textoFiltro" type="text" class="form-control" style="width: 50%;" ng-model="textoFiltro" placeholder="Digite o texto para filtragem." />
 <br />
 <br />
-<table>
+<div class="table-responsive">
+<table class="table table-bordered">
 	<tr>
-		<th colspan="9">Revistas cadastradas no sistema.</th>
+		<th colspan="9" style="text-align: center;">Revistas cadastradas no sistema.</th>
 	</tr>
 	<tr>
 		<th>Id</th>
@@ -84,9 +70,8 @@ Filtro de resultados:
 		<td>{{revistaT.edicao}}</td>
 		<td>{{revistaT.anoPublicacao}}</td>
 		<td>{{revistaT.valor | currency:'R$'}}</td>
-		<td><input type="button" value="Editar"
-			ng-click="editar(revistaT)" /></td>
-		<td><input type="button" value="Deletar"
-			ng-click="deletar(revistaT.id)" /></td>
+		<td style="text-align: center;"><input class="btn btn-primary" type="button" value="Editar" ng-click="editar(revistaT)" /></td>
+		<td style="text-align: center;"><input class="btn btn-primary" type="button" value="Deletar" ng-click="deletar(revistaT.id)" /></td>
 	</tr>
 </table>
+</div>

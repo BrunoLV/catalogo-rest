@@ -5,21 +5,21 @@
 var catalogoControllers = angular.module('catalogoControllers', []);
 
 // Definição do controller
-catalogoControllers.controller('revistaController', ['$scope', '$http', function ($scope, $http) {
+catalogoControllers.controller('revistaController', ['$scope', '$http', 'Model', function ($scope, $http, Model) {
     $scope.revista = {};
     $scope.revistas = [];
 
     $scope.carregarTodasRevistas = function () {
-        $http.get('rest/revistas').success(function (retorno) {
+    	Model.query(function (retorno) {
         	$scope.revistas = angular.fromJson(retorno);
-        }).error(function(retorno) {
+        }, function(retorno) {
         	var retornoRest = angular.fromJson(retorno);
         	alert("Mensagem: " + retornoRest.mensagem);
 		});
     };
 
     $scope.carregarTodasRevistas();
-
+    
     /*
 	 * Function para executar as ações de cadastrar/editar uma revista no
 	 * sistema.
@@ -28,20 +28,20 @@ catalogoControllers.controller('revistaController', ['$scope', '$http', function
         if ($scope.cadastroForm.$valid) {
         	var retornoRest = {}; 
             if ($scope.revista.id == null || $scope.revista.id == undefined || $scope.revista.id == 0) {
-            	$http.post('rest/revistas/gravar', $scope.revista).success(function (retorno) {
+            	Model.create({acao:'gravar'}, $scope.revista, function (retorno) {
             		retornoRest = angular.fromJson(retorno);
             		alert("Mensagem: " + retornoRest.mensagem);
                     $scope.carregarTodasRevistas();
-                }).error(function(retorno){
+                }, function(retorno){
                 	retornoRest = angular.fromJson(retorno);
                 	alert("Mensagem: " + retornoRest.mensagem);
                 });
             } else {
-                $http.put('rest/revistas/editar', $scope.revista).success(function (retorno) {
+            	Model.save({acao:'editar'}, $scope.revista, function (retorno) {
                 	retornoRest = angular.fromJson(retorno);
                 	alert("Mensagem: " + retornoRest.mensagem);	
                     $scope.carregarTodasRevistas();
-                }).error(function(retorno){
+                }, function(retorno){
                 	retornoRest = angular.fromJson(retorno);
                 	alert("Mensagem: " + retornoRest.mensagem);
                 });
@@ -56,14 +56,14 @@ catalogoControllers.controller('revistaController', ['$scope', '$http', function
 
     $scope.deletar = function (id) {
     	var retornoRest = {};
-        $http.delete('rest/revistas/deletar/' + id).success(function (retorno) { 
+    	Model.destroy({acao:'deletar'}, {id:id}, function (retorno) { 
         	retornoRest = angular.fromJson(retorno);
         	alert("Mensagem: " + retornoRest.mensagem);
             $scope.carregarTodasRevistas();
-        }).error(function(retorno){
+        },function(retorno){
         	retornoRest = angular.fromJson(retorno);
         	alert("Mensagem: " + retornoRest.mensagem);
-        });
+        });  
     };
 
     $scope.limpar = function() {

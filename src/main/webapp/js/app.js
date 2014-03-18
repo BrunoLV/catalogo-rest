@@ -1,5 +1,5 @@
-var catalogoApp = angular.module('catalogoApp', [ 'ngRoute',
-    'catalogoControllers', 'catalogoDirectives' ]);
+var catalogoApp = angular.module('catalogoApp', [ 'ngRoute', 'ngResource',
+    'catalogoControllers', 'catalogoDirectives', 'catalogoFactories' ]);
 
 catalogoApp.config([ '$routeProvider', function ($routeProvider) {
     $routeProvider.when('/', {
